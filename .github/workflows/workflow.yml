@@ -14,3 +14,5 @@ jobs:
       google_drive_id: "1MM3B6VRDXJDwQphj_sWuG8AthqIu8s-y"
       es_ver: "7"
       grammar_check_files: "code/osd_scenario.rpy"
+      exclusions: "exclusions.yml"
+      output_type: "markdown"
