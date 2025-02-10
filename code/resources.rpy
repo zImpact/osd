@@ -1,22 +1,29 @@
 init python:
     import time
     from os import path
+
+    osd_mod_name = "osd"
+    osd_prefix = osd_mod_name + "_"
     
     for file_name in renpy.list_files():
-        if "osd" in file_name:
+        if osd_mod_name in file_name:
             file_path = path.splitext(path.basename(file_name))[0]
 
             if file_name.startswith("osd/images/bg/"):
-                renpy.image("bg " + file_path, file_name)
-
-            elif file_name.startswith("osd/images/gui/"):
-                renpy.image(file_path, file_name)
+                renpy.image("bg " + osd_prefix + file_path, file_name)
 
             elif file_name.startswith("osd/images/sprites/"):
-                renpy.image(file_path, ConditionSwitch("persistent.sprite_time=='sunset'", im.MatrixColor(file_name, im.matrix.tint(0.94, 0.82, 1.0)), "persistent.sprite_time=='night'", im.MatrixColor(file_name, im.matrix.tint(0.63, 0.78, 0.82)), True, file_name))
+                renpy.image(
+                    osd_prefix + file_path, 
+                    ConditionSwitch(
+                        "persistent.sprite_time=='sunset'", im.MatrixColor(file_name, im.matrix.tint(0.94, 0.82, 1.0)),
+                        "persistent.sprite_time=='night'", im.MatrixColor(file_name, im.matrix.tint(0.63, 0.78, 0.82)),
+                        True, file_name
+                    )
+                )
 
             elif file_name.startswith("osd/sounds/"):
-                globals()[file_path] = file_name
+                globals()[osd_prefix + file_path] = file_name
 
     osd_std_set_for_preview = {}
     osd_std_set = {}
