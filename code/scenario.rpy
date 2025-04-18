@@ -1265,7 +1265,7 @@ label osd_peace:
     osd_narrator "Стала такой, какой и должна была быть."
     osd_narrator "Так, неделя за неделей, уходят в никуда их дни."
     osd_narrator "Их {w=0.6}украденные {w=0.7}дни."
-    $ osd_get_achievement('osd_old_story')             
+    $ osd_get_achievement("osd_old_story")             
     scene bg black with Dissolve(2)
     stop ambience fadeout 2
     stop music fadeout 2
@@ -1499,7 +1499,7 @@ label osd_eternity_split_in_two_transit:
             osd_narrator "Всё так, как было всегда."
             osd_narrator "Что же, пора идти."
             osd_narrator "Сегодня у нас новая игра."
-            $ osd_get_achievement('osd_as_before')
+            $ osd_get_achievement("osd_as_before")
             scene bg black with Dissolve(2)
             stop ambience fadeout 2
             stop music fadeout 2
@@ -1768,7 +1768,7 @@ label osd_eternity_split_in_two_transit:
             osd_narrator "Похоже, у лагеря всё же был последний секрет в рукаве."
             osd_third "Видимо, теперь есть целая вечность, чтобы обсудить это."
             osd_third "В конце концов, у нас много общего."
-            $ osd_get_achievement('osd_our_world')                    
+            $ osd_get_achievement("osd_our_world")                    
             scene bg black with Dissolve(2)
             stop ambience fadeout 2
             stop music fadeout 2
@@ -1935,7 +1935,7 @@ label osd_single_end:
     osd_narrator "Мне найдется работа."
     osd_narrator "Осталось лишь самое простое."
     osd_narrator "Я.{w=1} Умею.{w=1} Ждать."
-    $ osd_get_achievement('osd_perfect_gear')
+    $ osd_get_achievement("osd_perfect_gear")
     scene bg black with Dissolve(2)
     stop ambience fadeout 2
     stop music fadeout 2
@@ -2001,7 +2001,7 @@ label osd_end_of_secrets_route:
                 ypos 0
                 linear 3 ypos 1080
             $ renpy.pause(3, hard=True)
-            $ osd_get_achievement('osd_wind_of_changes')
+            $ osd_get_achievement("osd_wind_of_changes")
         
         "Отказаться":
             osd_narrator "Ни один его мускул не дрогнул. {w}Он даже не моргнул."
@@ -2013,7 +2013,7 @@ label osd_end_of_secrets_route:
             $ renpy.pause(3, hard=True)
             scene bg osd_ext_camp_entrance_anim with Dissolve(2)
             $ renpy.pause(3, hard=True)
-            $ osd_get_achievement('osd_calm')
+            $ osd_get_achievement("osd_calm")
              
     scene bg black with Dissolve(2)
     stop ambience fadeout 2

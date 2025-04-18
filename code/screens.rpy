@@ -13,7 +13,7 @@ init python:
     "osd_int_dining_hall_damaged", "osd_int_clubs_male_night_light",
     "osd_ext_music_club_night", "osd_ext_no_bus_pioneers",
     "osd_ext_bus_pioneers", "osd_int_bus_pioneers", "osd_int_dining_hall_sunset",
-    "osd_ext_camp_plain_sight", "osd_ext_sky", 'osd_nit_third_fight'
+    "osd_ext_camp_plain_sight", "osd_ext_sky", "osd_nit_third_fight"
     ]
 
     for bg in osd_gallery_bg_list:
@@ -385,46 +385,46 @@ screen osd_achievements():
         add osd_gui_path + "achievements/frame.png" xalign 0.5 ypos 240
 
         $ osd_achievements_buttons = {
-            'osd_our_world': {
-                'hover': 'osd_our_world_hover',
-                'idle': 'osd_our_world_idle',
-                'xalign': 0.35, 
-                'ypos': 290
+            "osd_our_world": {
+                "hover": "osd_our_world_hover",
+                "idle": "osd_our_world_idle",
+                "xalign": 0.35, 
+                "ypos": 290
             },
 
-            'osd_old_story': {
-                'hover': 'osd_old_story_hover',
-                'idle': 'osd_old_story_idle',
-                'xalign': 0.65,
-                'ypos': 290
+            "osd_old_story": {
+                "hover": "osd_old_story_hover",
+                "idle": "osd_old_story_idle",
+                "xalign": 0.65,
+                "ypos": 290
             },
 
-            'osd_as_before': {
-                'hover': 'osd_as_before_hover',
-                'idle': 'osd_as_before_idle',
-                'xalign': 0.35, 
-                'ypos': 490
+            "osd_as_before": {
+                "hover": "osd_as_before_hover",
+                "idle": "osd_as_before_idle",
+                "xalign": 0.35, 
+                "ypos": 490
             },
 
-            'osd_perfect_gear': {
-                'hover': 'osd_perfect_gear_hover',
-                'idle': 'osd_perfect_gear_idle', 
-                'xalign': 0.65, 
-                'ypos': 490
+            "osd_perfect_gear": {
+                "hover": "osd_perfect_gear_hover",
+                "idle": "osd_perfect_gear_idle", 
+                "xalign": 0.65, 
+                "ypos": 490
             },
 
-            'osd_wind_of_changes': {
-                'hover': 'osd_wind_of_changes_hover',
-                'idle': 'osd_wind_of_changes_idle',
-                'xalign': 0.35, 
-                'ypos': 690
+            "osd_wind_of_changes": {
+                "hover": "osd_wind_of_changes_hover",
+                "idle": "osd_wind_of_changes_idle",
+                "xalign": 0.35, 
+                "ypos": 690
             },
 
-            'osd_calm': {
-                'hover': 'osd_calm_hover',
-                'idle': 'osd_calm_idle',
-                'xalign': 0.65, 
-                'ypos': 690
+            "osd_calm": {
+                "hover": "osd_calm_hover",
+                "idle": "osd_calm_idle",
+                "xalign": 0.65, 
+                "ypos": 690
             },
         }
 
@@ -437,7 +437,7 @@ screen osd_achievements():
                     xalign buttons_info["xalign"]
                     ypos buttons_info["ypos"]
                     at osd_buttons_transition
-                    action ShowMenu('osd_achievement_description', achievement=achievement)
+                    action ShowMenu("osd_achievement_description", achievement=achievement)
             else:
                 add "osd_locked" xalign buttons_info["xalign"] ypos buttons_info["ypos"]
                 
@@ -446,54 +446,54 @@ screen osd_achievements():
             text_style "osd_settings_link_main_menu_preferences" 
             xalign 0.1
             ypos 970
-            action [Hide('osd_achievements'), ShowMenu('osd_extra')]
+            action [Hide("osd_achievements"), ShowMenu("osd_extra")]
 
 screen osd_achievement_description(achievement):
     $ osd_achievements_info = {
-        'osd_old_story': {
-            'name': 'Старая история',
-            'background': 'osd/images/bg/osd_int_dining_hall_sunset.png',
-            'text': 'В мире лагерей и вечных повторов сложно держаться\nза что-то материальное, поэтому культура Пионеров\nбыстро обросла своими правилами, суевериями и праздниками.\n\nПионеры обожают испытывать друг друга и\nсоревноваться в боях, музыке и даже в готовке.'
+        "osd_old_story": {
+            "name": "Старая история",
+            "background": "osd/images/bg/osd_int_dining_hall_sunset.png",
+            "text": "В мире лагерей и вечных повторов сложно держаться\nза что-то материальное, поэтому культура Пионеров\nбыстро обросла своими правилами, суевериями и праздниками.\n\nПионеры обожают испытывать друг друга и\nсоревноваться в боях, музыке и даже в готовке."
         },
 
-        'osd_our_world': {
-            'name': 'Наш мир',
-            'background': 'osd/images/bg/osd_ext_camp_plain_sight.png',
-            'text': 'Лагерь использует крайне сложную систему «замка», проверки на выход. Сложно понять все его правила, но главное — каждый настоящий Пионер должен быть\nуверен, что выйти возможно. Довериться другим таким\nже, как он.\n\n{i}И, если это произойдет, они вырвутся из замкнутой\nпетли{/i}. А единственными в лагере останутся лишь две сильнейшие куклы.'
+        "osd_our_world": {
+            "name": "Наш мир",
+            "background": "osd/images/bg/osd_ext_camp_plain_sight.png",
+            "text": "Лагерь использует крайне сложную систему «замка», проверки на выход. Сложно понять все его правила, но главное — каждый настоящий Пионер должен быть\nуверен, что выйти возможно. Довериться другим таким\nже, как он.\n\n{i}И, если это произойдет, они вырвутся из замкнутой\nпетли{/i}. А единственными в лагере останутся лишь две сильнейшие куклы."
         },
 
-        'osd_perfect_gear': {
-            'name': 'Идеальная шестерёнка',
-            'background': 'osd/images/bg/osd_stars_anim/osd_stars_1.png',
-            'text': 'Сначала считалось, что куклы глупы и заскриптованы,\nкак, например, все девушки из лагеря. Но никто и\nподумать не мог, что марионетки могут быть едва ли не сложнее самых изобретательных Пионеров.\n\nДаже если Пионеры выберутся, будет ли это\nпоражением лагеря?'
+        "osd_perfect_gear": {
+            "name": "Идеальная шестерёнка",
+            "background": "osd/images/bg/osd_stars_anim/osd_stars_1.png",
+            "text": "Сначала считалось, что куклы глупы и заскриптованы,\nкак, например, все девушки из лагеря. Но никто и\nподумать не мог, что марионетки могут быть едва ли не сложнее самых изобретательных Пионеров.\n\nДаже если Пионеры выберутся, будет ли это\nпоражением лагеря?"
         },
 
-        'osd_as_before': {
-            'name': 'Как раньше',
-            'background': 'images/bg/int_library_night2.jpg',
-            'text': 'Вечная жизнь имеет свои недостатки, но так же и свои\nплюсы. Пионеры могут бесконечно пробовать и\nразвиваться. Но никакая человеческая память не\nспособна вместить тысячи тысяч однообразных недель\nи самые старые пионеры в один день очнутся\n«новичками». Хоть многие и считают это проклятьем, но вечность без страха и смерти, когда её принять, дарит настоящее счастье.'
+        "osd_as_before": {
+            "name": "Как раньше",
+            "background": "images/bg/int_library_night2.jpg",
+            "text": "Вечная жизнь имеет свои недостатки, но так же и свои\nплюсы. Пионеры могут бесконечно пробовать и\nразвиваться. Но никакая человеческая память не\nспособна вместить тысячи тысяч однообразных недель\nи самые старые пионеры в один день очнутся\n«новичками». Хоть многие и считают это проклятьем, но вечность без страха и смерти, когда её принять, дарит настоящее счастье."
         },
 
-        'osd_wind_of_changes': {
-            'name': 'Ветер перемен',
-            'background': 'images/bg/ext_road_day.jpg',
-            'text': 'Чтобы разрушить Лагерь, нужно понять, как он работает, каким он был и каковы его пределы.\n\nВряд ли это просто, или даже возможно, но, быть может, удастся его расшатать?',
+        "osd_wind_of_changes": {
+            "name": "Ветер перемен",
+            "background": "images/bg/ext_road_day.jpg",
+            "text": "Чтобы разрушить Лагерь, нужно понять, как он работает, каким он был и каковы его пределы.\n\nВряд ли это просто, или даже возможно, но, быть может, удастся его расшатать?",
         },
 
-        'osd_calm': {
-            'name': 'Штиль',
-            'background': 'bg osd_ext_camp_entrance_anim',
-            'text': 'Мир лагерей огромен, хоть и не кажется таковым.\nЭто система, прошедшая тысячи лет и сотни тысяч\nиспытаний.\n\nНесмотря ни на что, она выполняла свою цель.\nНиточник не первый, кто захотел с ней покончить.\n\n{i}И он никогда не справится один.{/i}'
+        "osd_calm": {
+            "name": "Штиль",
+            "background": "bg osd_ext_camp_entrance_anim",
+            "text": "Мир лагерей огромен, хоть и не кажется таковым.\nЭто система, прошедшая тысячи лет и сотни тысяч\nиспытаний.\n\nНесмотря ни на что, она выполняла свою цель.\nНиточник не первый, кто захотел с ней покончить.\n\n{i}И он никогда не справится один.{/i}"
         }
     }
 
     modal True
 
-    add osd_achievements_info[achievement]['background']
+    add osd_achievements_info[achievement]["background"]
 
-    add 'osd_main_menu_frame'
+    add "osd_main_menu_frame"
 
-    text osd_achievements_info[achievement]['name']:
+    text osd_achievements_info[achievement]["name"]:
         font osd_link_font
         size 70
         xalign 0.5
@@ -501,7 +501,7 @@ screen osd_achievement_description(achievement):
         antialias True
         kerning 2
 
-    text osd_achievements_info[achievement]['text']:
+    text osd_achievements_info[achievement]["text"]:
         font osd_link_font
         size 60
         xpos 130
@@ -512,7 +512,7 @@ screen osd_achievement_description(achievement):
         text_style "osd_settings_link_main_menu_preferences" 
         xalign 0.1
         ypos 970
-        action [Hide('osd_achievement_description'), ShowMenu('osd_achievements')]
+        action [Hide("osd_achievement_description"), ShowMenu("osd_achievements")]
 
 
 screen osd_background_gallery():
@@ -538,7 +538,7 @@ screen osd_background_gallery():
             text_style "osd_settings_link_main_menu_preferences" 
             xalign 0.1
             ypos 970
-            action [Hide('osd_background_gallery'), ShowMenu('osd_extra')]
+            action [Hide("osd_background_gallery"), ShowMenu("osd_extra")]
 
         grid osd_rows osd_cols xpos 0.09 ypos 0.18:
             $ osd_bg_displayed = 0
@@ -568,14 +568,14 @@ screen osd_background_gallery():
 
         if osd_page != 0:
             imagebutton:
-                auto 'osd_gallery_previous_%s'
+                auto "osd_gallery_previous_%s"
                 yalign 0.5 
                 xalign 0.04 
                 action [SetVariable("osd_page", osd_page - 1), ShowMenu("osd_background_gallery")]
 
         if osd_page != int(osd_page_counter(osd_len_table, osd_cells)) - 1:
             imagebutton: 
-                auto 'osd_gallery_next_%s'
+                auto "osd_gallery_next_%s"
                 yalign 0.5 
                 xalign 0.96 
                 action [SetVariable("osd_page", osd_next_page), ShowMenu("osd_background_gallery")]
@@ -584,7 +584,7 @@ screen osd_music_room():
     modal True
 
     if not osd_main_menu_var:
-        add 'osd_music_room_frame'
+        add "osd_music_room_frame"
 
         frame background "osd_main_menu_frame":
             side "c r":
@@ -606,8 +606,8 @@ screen osd_music_room():
 
                 vbar:
                     value YScrollValue("osd_music_box")
-                    bottom_bar 'osd_main_menu_vbar_null'
-                    top_bar 'osd_main_menu_vbar_full'
+                    bottom_bar "osd_main_menu_vbar_null"
+                    top_bar "osd_main_menu_vbar_full"
                     thumb "images/misc/none.png"
                     xmaximum 52
 
@@ -624,7 +624,7 @@ screen osd_music_room():
             text_style "osd_settings_link_main_menu_preferences" 
             xalign 0.1
             ypos 970
-            action [Hide('osd_music_room'), ShowMenu('osd_extra')]
+            action [Hide("osd_music_room"), ShowMenu("osd_extra")]
 
         on "replaced" action Play("music", osd_god_is_an_astronaut_all_is_violent_all_is_bright)
         
@@ -974,28 +974,28 @@ screen osd_say(what, who):
             add osd_gui_path + "dialogue_box/" + persistent.timeofday + "/dialogue_box_large.png" xpos 174 ypos 866
 
             imagebutton:
-                auto osd_gui_path + 'dialogue_box/' + persistent.timeofday + '/hide_%s.png' 
+                auto osd_gui_path + "dialogue_box/" + persistent.timeofday + "/hide_%s.png" 
                 xpos 1508 
                 ypos 883 
                 action HideInterface()
 
             imagebutton:
-                auto osd_gui_path + 'dialogue_box/' + persistent.timeofday + "/save_%s.png"
+                auto osd_gui_path + "dialogue_box/" + persistent.timeofday + "/save_%s.png"
                 xpos 1567
                 ypos 883
-                action ShowMenu('osd_save')
+                action ShowMenu("osd_save")
 
             imagebutton:
-                auto osd_gui_path + 'dialogue_box/' + persistent.timeofday + "/menu_%s.png"
+                auto osd_gui_path + "dialogue_box/" + persistent.timeofday + "/menu_%s.png"
                 xpos 1625 
                 ypos 883 
-                action ShowMenu('osd_game_menu_selector')
+                action ShowMenu("osd_game_menu_selector")
 
             imagebutton:
-                auto osd_gui_path + 'dialogue_box/' + persistent.timeofday + "/load_%s.png"
+                auto osd_gui_path + "dialogue_box/" + persistent.timeofday + "/load_%s.png"
                 xpos 1682 
                 ypos 883 
-                action ShowMenu('osd_load')
+                action ShowMenu("osd_load")
 
             imagebutton:
                 auto osd_gui_path + "dialogue_box/" + persistent.timeofday + "/backward_%s.png" 
@@ -1037,28 +1037,28 @@ screen osd_say(what, who):
             add osd_gui_path + "dialogue_box/" + persistent.timeofday + "/dialogue_box.png" xpos 174 ypos 916
 
             imagebutton:
-                auto osd_gui_path + 'dialogue_box/' + persistent.timeofday + "/hide_%s.png"
+                auto osd_gui_path + "dialogue_box/" + persistent.timeofday + "/hide_%s.png"
                 xpos 1508
                 ypos 933
                 action HideInterface()
 
             imagebutton:
-                auto osd_gui_path + 'dialogue_box/' + persistent.timeofday+"/save_%s.png"
+                auto osd_gui_path + "dialogue_box/" + persistent.timeofday+"/save_%s.png"
                 xpos 1567
                 ypos 933
-                action ShowMenu('osd_save')
+                action ShowMenu("osd_save")
 
             imagebutton:
-                auto osd_gui_path + 'dialogue_box/' + persistent.timeofday+"/menu_%s.png"
+                auto osd_gui_path + "dialogue_box/" + persistent.timeofday+"/menu_%s.png"
                 xpos 1625
                 ypos 933
-                action ShowMenu('osd_game_menu_selector')
+                action ShowMenu("osd_game_menu_selector")
 
             imagebutton:
-                auto osd_gui_path + 'dialogue_box/' + persistent.timeofday+"/load_%s.png"
+                auto osd_gui_path + "dialogue_box/" + persistent.timeofday+"/load_%s.png"
                 xpos 1682
                 ypos 933
-                action ShowMenu('osd_load')
+                action ShowMenu("osd_load")
 
             imagebutton:
                 auto osd_gui_path + "dialogue_box/" + persistent.timeofday + "/backward_%s.png" 

@@ -140,12 +140,12 @@ init python:
     if persistent.osd_achievements == None:
         persistent.osd_achievements = {}
 
-    persistent.osd_achievements.setdefault('osd_old_story', False)
-    persistent.osd_achievements.setdefault('osd_our_world', False)
-    persistent.osd_achievements.setdefault('osd_perfect_gear', False)
-    persistent.osd_achievements.setdefault('osd_as_before', False)
-    persistent.osd_achievements.setdefault('osd_wind_of_changes', False)
-    persistent.osd_achievements.setdefault('osd_calm', False)
+    persistent.osd_achievements.setdefault("osd_old_story", False)
+    persistent.osd_achievements.setdefault("osd_our_world", False)
+    persistent.osd_achievements.setdefault("osd_perfect_gear", False)
+    persistent.osd_achievements.setdefault("osd_as_before", False)
+    persistent.osd_achievements.setdefault("osd_wind_of_changes", False)
+    persistent.osd_achievements.setdefault("osd_calm", False)
 
     def osd_get_achievement(achievement_name):
         renpy.pause(1, hard=True)
@@ -153,22 +153,22 @@ init python:
         if not persistent.osd_achievements[achievement_name]:
             persistent.osd_achievements[achievement_name] = True
             osd_show_titles()
-            renpy.play(sfx_achievement, channel='sound')
-            renpy.show(achievement_name + '_hover', at_list=[osd_achievements_pos])
+            renpy.play(sfx_achievement, channel="sound")
+            renpy.show(achievement_name + "_hover", at_list=[osd_achievements_pos])
             renpy.with_statement(moveinright)
             renpy.pause(4, hard=True)
-            renpy.hide(achievement_name + '_hover')
+            renpy.hide(achievement_name + "_hover")
             renpy.with_statement(dissolve)
 
     def osd_show_titles():
-        renpy.show('osd_titles_frame')
+        renpy.show("osd_titles_frame")
         renpy.with_statement(dissolve)
         renpy.show_screen("osd_titles_overlay", _layer="overlay")
         renpy.show("osd_titles_style osd_titles", at_list=[osd_titles_anim])
         renpy.pause(42, hard=True)
-        renpy.hide('osd_titles_frame')
+        renpy.hide("osd_titles_frame")
         renpy.with_statement(dissolve)
-        renpy.hide_screen('osd_titles_overlay', layer="overlay")
+        renpy.hide_screen("osd_titles_overlay", layer="overlay")
 
     def osd_show_centered_text(text, transition = None):
         renpy.show("text", what=Text(text, slow=True, style=style.osd_centered_text_style, xalign=0.5, yalign=0.5))
@@ -215,7 +215,7 @@ init python:
             config.allow_skipping = True
 
     def osd_portal_using(after_portal_use_bg):
-        before_portal_use_bg = renpy.get_attributes('bg')[0]
+        before_portal_use_bg = renpy.get_attributes("bg")[0]
         renpy.play(osd_portal_use, channel="sound")
         renpy.scene()
         renpy.show(before_portal_use_bg, at_list=[osd_portal_using_zoom])
@@ -229,7 +229,7 @@ init python:
         renpy.pause(1.3, hard=True)
 
     def osd_set_main_menu_cursor():
-        config.mouse_displayable = MouseDisplayable(osd_gui_path + 'misc/osd_cursor.png', 0, 0)
+        config.mouse_displayable = MouseDisplayable(osd_gui_path + "misc/osd_cursor.png", 0, 0)
 
     osd_set_main_menu_cursor_curried = renpy.curry(osd_set_main_menu_cursor)
 
@@ -237,12 +237,12 @@ init python:
         global osd_set_timeofday_cursor_var
 
         if osd_set_timeofday_cursor_var:
-            config.mouse_displayable = MouseDisplayable(osd_gui_path + 'dialogue_box/' + persistent.timeofday + '/cursor.png', 0, 0)
+            config.mouse_displayable = MouseDisplayable(osd_gui_path + "dialogue_box/" + persistent.timeofday + "/cursor.png", 0, 0)
 
     osd_set_timeofday_cursor_curried = renpy.curry(osd_set_timeofday_cursor)
 
     def osd_set_null_cursor():
-        config.mouse_displayable = MouseDisplayable(osd_gui_path + 'misc/osd_none.png', 0, 0)
+        config.mouse_displayable = MouseDisplayable(osd_gui_path + "misc/osd_none.png", 0, 0)
 
     osd_set_null_cursor_curried = renpy.curry(osd_set_null_cursor)
 
@@ -359,7 +359,7 @@ init:
 
     $ osd_set_timeofday_cursor_var = False
 
-    image osd_blank_skip = renpy.display.behavior.ImageButton(Null(1920, 1080), Null(1920, 1080), clicked=[Jump('osd_after_intro')])
+    image osd_blank_skip = renpy.display.behavior.ImageButton(Null(1920, 1080), Null(1920, 1080), clicked=[Jump("osd_after_intro")])
 
     image osd_titles_style = ParameterizedText(style="osd_titles_style", size=40, xalign=0.5)
 
@@ -437,7 +437,7 @@ init:
     $ osd_expl_death = False
 
     image silhouette osd_far = im.MatrixColor("osd/images/sprites/pi/far/osd_pi normal far.png", im.matrix.tint(0, 0, 0))
-    image osd_dv silhouette = im.MatrixColor('osd/images/sprites/dv/far/osd_dv normal far.png', im.matrix.tint(0, 0, 0))
+    image osd_dv silhouette = im.MatrixColor("osd/images/sprites/dv/far/osd_dv normal far.png", im.matrix.tint(0, 0, 0))
 
     transform osd_buttons_atl():
         on idle:
