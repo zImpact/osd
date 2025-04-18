@@ -36,31 +36,31 @@ init python:
 
     store.osd_names_list.append("osd_th")
 
-    osd_colors["osd_third"] = {"speaker_color": "#004979"}
+    osd_colors["osd_third"] = {"speaker_color": OSD_THIRD_NAME_COLOR}
     osd_names["osd_third"] = "Третий"
     store.osd_names_list.append("osd_third")
 
-    osd_colors["osd_hall"] = {"speaker_color": "#551313"}
+    osd_colors["osd_hall"] = {"speaker_color": OSD_HALL_NAME_COLOR}
     osd_names["osd_hall"] = "Халл"
     store.osd_names_list.append("osd_hall")
 
-    osd_colors["osd_nit"] = {"speaker_color": "#9f9393"}
+    osd_colors["osd_nit"] = {"speaker_color": OSD_NIT_NAME_COLOR}
     osd_names["osd_nit"] = "Ниточник"
     store.osd_names_list.append("osd_nit")
 
-    osd_colors["osd_pi2"] = {"speaker_color": "#ffcc66"}
+    osd_colors["osd_pi2"] = {"speaker_color": OSD_PI2_NAME_COLOR}
     osd_names["osd_pi2"] = "Пионер"
     store.osd_names_list.append("osd_pi2")
 
-    osd_colors["osd_nit_voice"] = {"speaker_color": "#9f9393"}
+    osd_colors["osd_nit_voice"] = {"speaker_color": OSD_NIT_NAME_COLOR}
     osd_names["osd_nit_voice"] = "Голос"
     store.osd_names_list.append("osd_nit_voice")
 
-    osd_colors["osd_sl"] = {"speaker_color": "#ffd200"}
+    osd_colors["osd_sl"] = {"speaker_color": OSD_SL_NAME_COLOR}
     osd_names["osd_sl"] = "Славя"
     store.osd_names_list.append("osd_sl")
 
-    def osd_char_define(character_name, is_nvl = False):
+    def osd_char_define(character_name, is_nvl=False):
         global DynamicCharacter
         global nvl
         global osd_store
