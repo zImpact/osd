@@ -59,7 +59,7 @@ init python:
         renpy.free_memory()
         config.overlay_functions.remove(osd_set_timeofday_cursor)
 
-        config.mouse_displayable = MouseDisplayable('images/misc/mouse/1.png', 0, 0)
+        config.mouse_displayable = MouseDisplayable("images/misc/mouse/1.png", 0, 0)
         config.main_menu_music = "sound/music/blow_with_the_fires.ogg"
 
         renpy.block_rollback()
