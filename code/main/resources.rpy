@@ -1,20 +1,17 @@
 init python:
     import time
     from os import path
-
-    osd_mod_name = "osd"
-    osd_prefix = osd_mod_name + "_"
     
     for file_name in renpy.list_files():
-        if osd_mod_name in file_name:
+        if OSD_MOD_NAME in file_name:
             file_path = path.splitext(path.basename(file_name))[0]
 
             if file_name.startswith("osd/images/bg/"):
-                renpy.image("bg " + osd_prefix + file_path, file_name)
+                renpy.image("bg " + OSD_PREFIX + file_path, file_name)
 
             elif file_name.startswith("osd/images/sprites/"):
                 renpy.image(
-                    osd_prefix + file_path, 
+                    OSD_PREFIX + file_path, 
                     ConditionSwitch(
                         "persistent.sprite_time=='sunset'", im.MatrixColor(file_name, im.matrix.tint(0.94, 0.82, 1.0)),
                         "persistent.sprite_time=='night'", im.MatrixColor(file_name, im.matrix.tint(0.63, 0.78, 0.82)),
@@ -23,7 +20,7 @@ init python:
                 )
 
             elif file_name.startswith("osd/sounds/"):
-                globals()[osd_prefix + file_path] = file_name
+                globals()[OSD_PREFIX + file_path] = file_name
 
     osd_std_set_for_preview = {}
     osd_std_set = {}
@@ -128,15 +125,6 @@ init python:
 
     osd_reload_names()
 
-    def osd_page_counter(n, k):
-        l = float(n) / float(k)
-        
-        if l - int(l) > 0:
-            return int(l) + 1
-
-        else:
-            return l
-
     if persistent.osd_achievements == None:
         persistent.osd_achievements = {}
 
@@ -229,7 +217,7 @@ init python:
         renpy.pause(1.3, hard=True)
 
     def osd_set_main_menu_cursor():
-        config.mouse_displayable = MouseDisplayable(osd_gui_path + "misc/osd_cursor.png", 0, 0)
+        config.mouse_displayable = MouseDisplayable(OSD_GUI_PATH + "misc/osd_cursor.png", 0, 0)
 
     osd_set_main_menu_cursor_curried = renpy.curry(osd_set_main_menu_cursor)
 
@@ -237,12 +225,12 @@ init python:
         global osd_set_timeofday_cursor_var
 
         if osd_set_timeofday_cursor_var:
-            config.mouse_displayable = MouseDisplayable(osd_gui_path + "dialogue_box/" + persistent.timeofday + "/cursor.png", 0, 0)
+            config.mouse_displayable = MouseDisplayable(OSD_GUI_PATH + "dialogue_box/" + persistent.timeofday + "/cursor.png", 0, 0)
 
     osd_set_timeofday_cursor_curried = renpy.curry(osd_set_timeofday_cursor)
 
     def osd_set_null_cursor():
-        config.mouse_displayable = MouseDisplayable(osd_gui_path + "misc/osd_none.png", 0, 0)
+        config.mouse_displayable = MouseDisplayable(OSD_GUI_PATH + "misc/osd_none.png", 0, 0)
 
     osd_set_null_cursor_curried = renpy.curry(osd_set_null_cursor)
 
@@ -363,7 +351,7 @@ init:
 
     image osd_titles_style = ParameterizedText(style="osd_titles_style", size=40, xalign=0.5)
 
-    image osd_loading_text = Text("Загрузка", size=65, font="osd/images/gui/fonts/gothic.ttf")
+    image osd_loading_text = Text("Загрузка", size=65, font=OSD_GUI_PATH + "fonts/gothic.ttf")
 
     $ osd_lamp_anim_frequency = renpy.random.randint(1, 5)
 
@@ -372,7 +360,7 @@ init:
     $ osd_lock_quit = False
     $ osd_lock_quick_menu = False
 
-    $ osd_portal_use_transition = ImageDissolve("osd/images/gui/misc/osd_transition2.png", 0.3, 16)
+    $ osd_portal_use_transition = ImageDissolve(OSD_GUI_PATH + "misc/osd_transition2.png", 0.3, 16)
 
     image osd_main_menu_atl:
         "osd_sky_day" with Dissolve(4)
@@ -383,10 +371,10 @@ init:
         pause 6.0
         repeat
 
-    image osd_dust = OsdDust("osd/images/gui/effects/osd_dust/particle.png")
+    image osd_dust = OsdDust(OSD_GUI_PATH + "effects/osd_dust/particle.png")
 
     image bg osd_stars_anim = osd_frame_animation("osd/images/bg/osd_stars_anim/osd_stars", 2, 1.5, True, Dissolve(1.5))
-    image osd_blood_anim = osd_frame_animation("osd/images/gui/effects/osd_blood/osd_blood", 4, 0.5, True, dspr)
+    image osd_blood_anim = osd_frame_animation(OSD_GUI_PATH + "effects/osd_blood/osd_blood", 4, 0.5, True, dspr)
     image bg osd_fireplace_anim = osd_frame_animation("osd/images/bg/osd_fireplace_anim/osd_fireplace", 10, 1.8, True, Dissolve(1.2))
     image bg osd_ext_camp_entrance_anim = osd_frame_animation("osd/images/bg/osd_ext_camp_entrance_anim/osd_ext_camp_entrance", 3, 1.0, True, Dissolve(1.0))
     image osd_lamp_anim = osd_frame_animation("osd/images/bg/osd_lamp_anim/osd_semen_room_lamp", 2, osd_lamp_anim_frequency, True, dspr)

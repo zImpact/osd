@@ -1,8 +1,6 @@
-init -1 python:
-    osd_gui_path = "osd/images/gui/"
-    
-    osd_link_font = osd_gui_path + "fonts/gothic.ttf"
-    osd_header_font = osd_gui_path + "fonts/corbel.ttf"
+init python:
+    osd_link_font = OSD_GUI_PATH + "fonts/gothic.ttf"
+    osd_header_font = OSD_GUI_PATH + "fonts/corbel.ttf"
     osd_main_font = "fonts/calibri.ttf"
 
     osd_load_text = "Загрузить игру"
@@ -51,39 +49,39 @@ init -1 python:
     style.osd_log_button.background = None
 
     style.osd_save_load_button_main_menu = Style(style.button)
-    style.osd_save_load_button_main_menu.background = osd_gui_path + "save_load/main_menu/thumbnail_idle.png"
-    style.osd_save_load_button_main_menu.hover_background = osd_gui_path + "save_load/main_menu/thumbnail_hover.png"
-    style.osd_save_load_button_main_menu.selected_background = osd_gui_path + "save_load/main_menu/thumbnail_selected.png"
-    style.osd_save_load_button_main_menu.selected_hover_background = osd_gui_path + "save_load/main_menu/thumbnail_selected.png"
-    style.osd_save_load_button_main_menu.selected_idle_background = osd_gui_path + "save_load/main_menu/thumbnail_selected.png"
+    style.osd_save_load_button_main_menu.background = OSD_GUI_PATH + "save_load/main_menu/thumbnail_idle.png"
+    style.osd_save_load_button_main_menu.hover_background = OSD_GUI_PATH + "save_load/main_menu/thumbnail_hover.png"
+    style.osd_save_load_button_main_menu.selected_background = OSD_GUI_PATH + "save_load/main_menu/thumbnail_selected.png"
+    style.osd_save_load_button_main_menu.selected_hover_background = OSD_GUI_PATH + "save_load/main_menu/thumbnail_selected.png"
+    style.osd_save_load_button_main_menu.selected_idle_background = OSD_GUI_PATH + "save_load/main_menu/thumbnail_selected.png"
 
     style.osd_save_load_button_day = Style(style.button)
-    style.osd_save_load_button_day.background = osd_gui_path + "save_load/day/thumbnail_idle.png"
-    style.osd_save_load_button_day.hover_background = osd_gui_path + "save_load/day/thumbnail_hover.png"
-    style.osd_save_load_button_day.selected_background = osd_gui_path + "save_load/day/thumbnail_selected.png"
-    style.osd_save_load_button_day.selected_hover_background = osd_gui_path + "save_load/day/thumbnail_selected.png"
-    style.osd_save_load_button_day.selected_idle_background = osd_gui_path + "save_load/day/thumbnail_selected.png"
+    style.osd_save_load_button_day.background = OSD_GUI_PATH + "save_load/day/thumbnail_idle.png"
+    style.osd_save_load_button_day.hover_background = OSD_GUI_PATH + "save_load/day/thumbnail_hover.png"
+    style.osd_save_load_button_day.selected_background = OSD_GUI_PATH + "save_load/day/thumbnail_selected.png"
+    style.osd_save_load_button_day.selected_hover_background = OSD_GUI_PATH + "save_load/day/thumbnail_selected.png"
+    style.osd_save_load_button_day.selected_idle_background = OSD_GUI_PATH + "save_load/day/thumbnail_selected.png"
 
     style.osd_save_load_button_night = Style(style.button)
-    style.osd_save_load_button_night.background = osd_gui_path + "save_load/night/thumbnail_idle.png"
-    style.osd_save_load_button_night.hover_background = osd_gui_path + "save_load/night/thumbnail_hover.png"
-    style.osd_save_load_button_night.selected_background = osd_gui_path + "save_load/night/thumbnail_selected.png"
-    style.osd_save_load_button_night.selected_hover_background = osd_gui_path + "save_load/night/thumbnail_selected.png"
-    style.osd_save_load_button_night.selected_idle_background = osd_gui_path + "save_load/night/thumbnail_selected.png"
+    style.osd_save_load_button_night.background = OSD_GUI_PATH + "save_load/night/thumbnail_idle.png"
+    style.osd_save_load_button_night.hover_background = OSD_GUI_PATH + "save_load/night/thumbnail_hover.png"
+    style.osd_save_load_button_night.selected_background = OSD_GUI_PATH + "save_load/night/thumbnail_selected.png"
+    style.osd_save_load_button_night.selected_hover_background = OSD_GUI_PATH + "save_load/night/thumbnail_selected.png"
+    style.osd_save_load_button_night.selected_idle_background = OSD_GUI_PATH + "save_load/night/thumbnail_selected.png"
 
     style.osd_save_load_button_prologue = Style(style.button)
-    style.osd_save_load_button_prologue.background = osd_gui_path + "save_load/prologue/thumbnail_idle.png"
-    style.osd_save_load_button_prologue.hover_background = osd_gui_path + "save_load/prologue/thumbnail_hover.png"
-    style.osd_save_load_button_prologue.selected_background = osd_gui_path + "save_load/prologue/thumbnail_selected.png"
-    style.osd_save_load_button_prologue.selected_hover_background = osd_gui_path + "save_load/prologue/thumbnail_selected.png"
-    style.osd_save_load_button_prologue.selected_idle_background = osd_gui_path + "save_load/prologue/thumbnail_selected.png"
+    style.osd_save_load_button_prologue.background = OSD_GUI_PATH + "save_load/prologue/thumbnail_idle.png"
+    style.osd_save_load_button_prologue.hover_background = OSD_GUI_PATH + "save_load/prologue/thumbnail_hover.png"
+    style.osd_save_load_button_prologue.selected_background = OSD_GUI_PATH + "save_load/prologue/thumbnail_selected.png"
+    style.osd_save_load_button_prologue.selected_hover_background = OSD_GUI_PATH + "save_load/prologue/thumbnail_selected.png"
+    style.osd_save_load_button_prologue.selected_idle_background = OSD_GUI_PATH + "save_load/prologue/thumbnail_selected.png"
 
     style.osd_save_load_button_sunset = Style(style.button)
-    style.osd_save_load_button_sunset.background = osd_gui_path + "save_load/sunset/thumbnail_idle.png"
-    style.osd_save_load_button_sunset.hover_background = osd_gui_path + "save_load/sunset/thumbnail_hover.png"
-    style.osd_save_load_button_sunset.selected_background = osd_gui_path + "save_load/sunset/thumbnail_selected.png"
-    style.osd_save_load_button_sunset.selected_hover_background = osd_gui_path + "save_load/sunset/thumbnail_selected.png"
-    style.osd_save_load_button_sunset.selected_idle_background = osd_gui_path + "save_load/sunset/thumbnail_selected.png"
+    style.osd_save_load_button_sunset.background = OSD_GUI_PATH + "save_load/sunset/thumbnail_idle.png"
+    style.osd_save_load_button_sunset.hover_background = OSD_GUI_PATH + "save_load/sunset/thumbnail_hover.png"
+    style.osd_save_load_button_sunset.selected_background = OSD_GUI_PATH + "save_load/sunset/thumbnail_selected.png"
+    style.osd_save_load_button_sunset.selected_hover_background = OSD_GUI_PATH + "save_load/sunset/thumbnail_selected.png"
+    style.osd_save_load_button_sunset.selected_idle_background = OSD_GUI_PATH + "save_load/sunset/thumbnail_selected.png"
 
     style.osd_centered_text_style = Style(style.default)
     style.osd_centered_text_style.font = osd_main_font
