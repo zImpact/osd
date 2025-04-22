@@ -952,19 +952,19 @@ label osd_fight_2:
     osd_narrator "Ниточник ухмылялся. Даже не торопился наступать на раненого соперника. {w}Уже чувствует себя победителем."
     osd_th "Не перевязать — вероятная смерть. Закончить нужно быстро. {w}И варианта всего два."
     $ renpy.block_rollback()
-    call screen osd_fight_with_nit(osd_x1_time=2.5)
+    call screen osd_fight_with_nit(osd_x1_time=3.5)
     $ renpy.block_rollback()
 
 label osd_fight_ahead1:
     osd_narrator "Нечего ждать."
     $ renpy.block_rollback()
-    call screen osd_fight_ahead2(osd_x2_time=2)
+    call screen osd_fight_ahead2(osd_x2_time=3)
     $ renpy.block_rollback()
 
 label osd_fight_parallax1:
     osd_th "И что ты приготовил для этого, Ниточник?"
     $ renpy.block_rollback()
-    call screen osd_fight_parallax2(osd_x2_time=2)
+    call screen osd_fight_parallax2(osd_x2_time=3)
     $ renpy.block_rollback()
 
 label osd_fight_arc:
