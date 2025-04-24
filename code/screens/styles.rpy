@@ -3,24 +3,6 @@ init python:
     osd_header_font = OSD_GUI_PATH + "fonts/corbel.ttf"
     osd_main_font = "fonts/calibri.ttf"
 
-    osd_load_text = "Загрузить игру"
-    osd_preferences_text = "Настройки"
-    osd_extra_text = "Дополнительно"
-    osd_delete_text = "Удалить"
-    osd_return_text = "Назад"
-    osd_yes_text = "Да"
-    osd_no_text = "Нет"
-    osd_display_preferences_text = "Режим экрана"
-    osd_display_preferences_fullscreen_text = "Во весь экран"
-    osd_display_preferences_window_text = "В окне"
-    osd_font_size_preferences_text = "Размер шрифта"
-    osd_font_size_preferences_small_text = "Обычный"
-    osd_font_size_preferences_large_text = "Крупный"
-    osd_skip_preferences_text = "Пропускать"
-    osd_skip_preferences_seen_text = "Виденное ранее"
-    osd_skip_preferences_all_text = "Всё"
-    osd_loading_text = "Загрузка"
-
     style.osd_button_none = Style(style.button)
     style.osd_button_none.background = None
     style.osd_button_none.hover_background = None
@@ -193,7 +175,7 @@ init python:
     style.osd_settings_header_day.size = 50
     style.osd_settings_header_day.color = "#4d2e19"
     style.osd_settings_header_day.hover_color = "#a27146"
-    
+
     style.osd_settings_header_night = Style(style.osd_base_font)
     style.osd_settings_header_night.font = osd_header_font
     style.osd_settings_header_night.size = 50

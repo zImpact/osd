@@ -26,9 +26,9 @@ screen osd_music_room():
     modal True
 
     if not osd_main_menu_var:
-        add "osd_music_room_frame"
+        add OSD_GUI_PATH + "main_menu/music_room_frame.png"
 
-        frame background "osd_main_menu_frame":
+        frame background OSD_GUI_PATH + "main_menu/main_menu_frame.png":
             side "c r":
                 area (0.15, 0.22, 0.79, 0.73)
 
@@ -41,16 +41,17 @@ screen osd_music_room():
                     grid 1 len(osd_music_box):
                         for name, track in sorted(osd_music_box.iteritems()):
                             $ osd_music_room_label_text = name if osd_music_room.is_unlocked(track) else "???"
+
                             textbutton osd_music_room_label_text:
                                 style "osd_button_none"
                                 text_style "music_link"
                                 xalign 0.5
-                                action osd_mr.Play(track)
+                                action osd_music_room.Play(track)
 
                 vbar:
                     value YScrollValue("osd_music_box")
-                    bottom_bar "osd_main_menu_vbar_null"
-                    top_bar "osd_main_menu_vbar_full"
+                    bottom_bar OSD_GUI_PATH + "preferences/main_menu/vbar_null.png"
+                    top_bar OSD_GUI_PATH + "preferences/main_menu/vbar_full.png"
                     thumb "images/misc/none.png"
                     xmaximum 52
 
@@ -62,9 +63,9 @@ screen osd_music_room():
             antialias True
             kerning 2
 
-        textbutton "[osd_return_text]":
-            style "osd_log_button" 
-            text_style "osd_settings_link_main_menu_preferences" 
+        textbutton "[OSD_RETURN_TEXT]":
+            style "osd_log_button"
+            text_style "osd_settings_link_main_menu_preferences"
             xalign 0.1
             ypos 970
             action [

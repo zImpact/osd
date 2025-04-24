@@ -1,12 +1,11 @@
 label osd_main_scenario:
-    $ osd_set_mode_nvl()
     stop music fadeout 3
-    $ renpy.pause(2, hard=True)
-    $ persistent.sprite_time = "night"  
-    $ persistent.timeofday = "prologue"
+    $ renpy.pause(3, hard=True)
     scene anim prolog_1 with fade3
-    play ambience ambience_catacombs fadein 3
-    $ osd_set_timeofday_cursor_var = True
+    $ osd_set_mode_nvl()
+    $ osd_set_time(OSD_TIMEOFDAY_PROLOGUE)
+    $ osd_set_dynamic_cursor("timeofday")
+    play ambience ambience_catacombs fadein 2
     osd_narrator "Когда-то всё было по-другому. Вокруг был не лагерь, не куклы и не пионеры. {w}Или так хотят верить." with dissolve
     osd_narrator "Как в библиотеке есть книги о загадочных замках и далёких планетах, так и Пионерам хочется верить, что существовала жизнь, где был дом, были «близкие», а с неба падала белая пыль."
     osd_narrator "Нет ничего страшного в фантазиях. Плохо, когда в фантазии начинаешь верить."
@@ -16,8 +15,7 @@ label osd_main_scenario:
     osd_narrator "А мне хотя бы есть на что посмотреть."
     stop ambience fadeout 2
     scene bg black with Dissolve(2)
-    $ persistent.timeofday = "night"
-    $ persistent.sprite_time = "night"
+    $ osd_set_time(OSD_TIMEOFDAY_NIGHT)
     $ osd_set_mode_adv()
     scene bg ext_stage_big_night with Dissolve(2)
     play ambience ambience_camp_center_night fadein 4
@@ -170,12 +168,12 @@ label osd_main_scenario:
     osd_narrator "Я хотел обернуться, но меня опередили. Стул, на котором я сидел, резко развернули." with hpunch
     osd_th "Как грубо."
     show osd_pi normal at center
-    show silhouette osd_far as osd_pion1 at left behind osd_pi
-    show silhouette osd_far as osd_pion2 at right behind osd_pi
-    show silhouette osd_far as osd_pion3 at cleft behind osd_pi
-    show silhouette osd_far as osd_pion4 at cright behind osd_pi
-    show silhouette osd_far as osd_pion5 at fleft behind osd_pi
-    show silhouette osd_far as osd_pion6 at fright behind osd_pi
+    show osd_pi silhouette far as osd_pi1 at left behind osd_pi
+    show osd_pi silhouette far as osd_pi2 at right behind osd_pi
+    show osd_pi silhouette far as osd_pi3 at cleft behind osd_pi
+    show osd_pi silhouette far as osd_pi4 at cright behind osd_pi
+    show osd_pi silhouette far as osd_pi5 at fleft behind osd_pi
+    show osd_pi silhouette far as osd_pi6 at fright behind osd_pi
     with dissolve
     osd_narrator "Впереди толпы относительно смело стоял один из Пионеров. Судя по тому, что я ничего о нем не помнил, личность он либо слишком классическая, либо слишком скучная."
     osd_pi2 "Ты Третий?"
@@ -260,26 +258,26 @@ label osd_main_scenario:
     osd_third "Прошу прощения, что заставил ждать."
     osd_narrator "Придвинув стул обратно, я вернулся к картам."
     osd_narrator "Но всё внимание публики было приковано к тем немногим стекающим с моего трофея алым каплям."
-    show silhouette osd_far as osd_pioneer_1 at center
-    show silhouette osd_far as osd_pioneer_2 at left
-    show silhouette osd_far as osd_pioneer_3 at right
-    show silhouette osd_far as osd_pioneer_4 at cleft
-    show silhouette osd_far as osd_pioneer_5 at cright
-    show silhouette osd_far as osd_pioneer_6 at fleft
-    show silhouette osd_far as osd_pioneer_7 at fright
+    show osd_pi silhouette far as osd_pi1 at center
+    show osd_pi silhouette far as osd_pi2 at left
+    show osd_pi silhouette far as osd_pi3 at right
+    show osd_pi silhouette far as osd_pi4 at cleft
+    show osd_pi silhouette far as osd_pi5 at cright
+    show osd_pi silhouette far as osd_pi6 at fleft
+    show osd_pi silhouette far as osd_pi7 at fright
     with dissolve
     osd_third "Кто-то еще хочет обсудить разногласия?"
     osd_narrator "Я быстро просканировал толпу недовольных, но первого и второго по силе пионеров там не было. {w}Да и не их это почерк, они бы не осилили долгого нахождения рядом с новичками."
     osd_third "Давайте, не стесняйтесь, можете и всей группой."
     osd_th "Буду перемещать по одному."
     osd_third "Никто? Тогда спасибо за внимание, все свободны."
-    hide silhouette osd_far as osd_pioneer_1
-    hide silhouette osd_far as osd_pioneer_2
-    hide silhouette osd_far as osd_pioneer_3
-    hide silhouette osd_far as osd_pioneer_4
-    hide silhouette osd_far as osd_pioneer_5
-    hide silhouette osd_far as osd_pioneer_6
-    hide silhouette osd_far as osd_pioneer_7
+    hide osd_pi silhouette far as osd_pi1
+    hide osd_pi silhouette far as osd_pi2
+    hide osd_pi silhouette far as osd_pi3
+    hide osd_pi silhouette far as osd_pi4
+    hide osd_pi silhouette far as osd_pi5
+    hide osd_pi silhouette far as osd_pi6
+    hide osd_pi silhouette far as osd_pi7
     with dissolve
     osd_narrator "Я положил нож на край стола. {w}Так. Для вида."
     osd_narrator "Мои карты всё так же лежали на положенном месте. {w}Я их взял, и партия продолжилась как ни в чем не бывало." # nolint
@@ -1219,10 +1217,8 @@ label osd_peace:
     stop ambience fadeout 2
     stop sound_loop fadeout 2
     scene bg black with Dissolve(2)
-    $ renpy.block_rollback()
     $ renpy.pause(5, hard=True)
-    $ persistent.timeofday = "sunset"
-    $ persistent.sprite_time = "sunset"
+    $ osd_set_time(OSD_TIMEOFDAY_SUNSET)
     play music osd_academy_of_honor_guitar_cover fadein 4
     $ renpy.pause(2, hard=True)
     scene bg osd_int_dining_hall_sunset
@@ -1270,7 +1266,7 @@ label osd_peace:
     stop ambience fadeout 2
     stop music fadeout 2
     $ renpy.pause(3, hard=True)
-    $ osd_set_main_menu_cursor()
+    $ osd_set_dynamic_cursor("main_menu")
     $ MainMenu(confirm=False)()
 
 label osd_eternity_split_in_two_transit:
@@ -1474,7 +1470,7 @@ label osd_eternity_split_in_two_transit:
             stop ambience fadeout 2
             osd_narrator ".{w=1}.{w=1}.{w=1}"
             $ renpy.pause(3, hard=True)
-            $ persistent.timeofday = "night"
+            $ osd_set_time(OSD_TIMEOFDAY_NIGHT)
             scene bg int_library_night2 with Dissolve(2)
             play music osd_haimin_mistakes fadein 4
             hide blink with dissolve
@@ -1504,7 +1500,7 @@ label osd_eternity_split_in_two_transit:
             stop ambience fadeout 2
             stop music fadeout 2
             $ renpy.pause(3, hard=True)
-            $ osd_set_main_menu_cursor()
+            $ osd_set_dynamic_cursor("main_menu")
             $ MainMenu(confirm=False)()
         
         "Промолчать":
@@ -1532,7 +1528,7 @@ label osd_eternity_split_in_two_transit:
             $ renpy.block_rollback()
             $ renpy.pause(3, hard=True)
             play music osd_socialism fadein 3
-            $ persistent.timeofday = "prologue"
+            $ osd_set_time(OSD_TIMEOFDAY_PROLOGUE)
             play sound_loop osd_heart
             scene bg osd_lamp_anim_blurred at osd_vertigo with flash
             $ osd_heartbeat_animation("bg osd_lamp_anim_blurred", 1.05, 1.0)
@@ -1596,8 +1592,7 @@ label osd_eternity_split_in_two_transit:
             stop music fadeout 2
             $ renpy.pause(3, hard=True)
             show unblink
-            $ persistent.timeofday = "day"
-            $ persistent.sprite_time = "day"
+            $ osd_set_time(OSD_TIMEOFDAY_DAY)
             scene bg ext_road_day with Dissolve(2)
             play ambience ambience_ext_road_day fadein 1
             hide blink
@@ -1773,11 +1768,11 @@ label osd_eternity_split_in_two_transit:
             stop ambience fadeout 2
             stop music fadeout 2
             $ renpy.pause(3, hard=True)
-            $ osd_set_main_menu_cursor()
+            $ osd_set_dynamic_cursor("main_menu")
             $ MainMenu(confirm=False)()
     
 label osd_single_end:
-    $ persistent.timeofday = "day"
+    $ osd_set_time(OSD_TIMEOFDAY_DAY)
     scene bg black with dissolve
     osd_narrator ".{w=1}.{w=1}."
     hide blink
@@ -1899,14 +1894,14 @@ label osd_single_end:
     osd_narrator "Паника и истерики ничего не дадут, как и всегда. Мне просто вновь придется прожить новую бесконечность. С этим проблем точно не будет."
     osd_narrator "Пока что стоит просто успокоиться. Расслабиться. Отдохнуть. {i}Я этого заслуживаю.{/i}"
     $ renpy.block_rollback()
-    $ persistent.timeofday = "sunset"
+    $ osd_set_time(OSD_TIMEOFDAY_SUNSET)
     stop ambience fadeout 2
     $ renpy.pause(0.5, hard=True)
     play ambience ambience_ext_road_evening fadein 2
     scene bg ext_road_sunset with Dissolve(3)
     $ renpy.pause(2, hard=True)
     $ renpy.block_rollback()
-    $ persistent.timeofday = "night"
+    $ osd_set_time(OSD_TIMEOFDAY_NIGHT)
     stop ambience fadeout 2
     $ renpy.pause(0.5, hard=True)
     play ambience ambience_ext_road_night fadein 2
@@ -1940,7 +1935,7 @@ label osd_single_end:
     stop ambience fadeout 2
     stop music fadeout 2
     $ renpy.pause(3, hard=True)
-    $ osd_set_main_menu_cursor()
+    $ osd_set_dynamic_cursor("main_menu")
     $ MainMenu(confirm=False)()
     
 label osd_end_of_secrets_route:
@@ -2019,5 +2014,5 @@ label osd_end_of_secrets_route:
     stop ambience fadeout 2
     stop music fadeout 2
     $ renpy.pause(3, hard=True)
-    $ osd_set_main_menu_cursor()
+    $ osd_set_dynamic_cursor("main_menu")
     $ MainMenu(confirm=False)()
