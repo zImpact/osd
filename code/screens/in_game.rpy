@@ -321,7 +321,9 @@ screen osd_load():
     tag menu
     modal True
     
-    window background OSD_GUI_PATH + "save_load/" + persistent.timeofday + "/load_bg.png":
+    window:
+        background OSD_GUI_PATH + "save_load/" + persistent.timeofday + "/load_bg.png"
+        
         text "[OSD_LOADING_TEXT]": 
             style "osd_settings_link" 
             xalign 0.5 
@@ -379,7 +381,10 @@ screen osd_load():
                             ypos 15                  
                                 
 screen osd_say(what, who):    
-    window background None id "window":
+    window:
+        background None
+        id "window"
+
         if persistent.font_size == "large":
             add OSD_GUI_PATH + "dialogue_box/" + persistent.timeofday + "/dialogue_box_large.png" xpos 174 ypos 866
 
