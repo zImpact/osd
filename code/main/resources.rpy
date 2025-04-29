@@ -1,17 +1,17 @@
 init python:
     import time
     from os import path
-    
+
     for file_name in renpy.list_files():
         if OSD_MOD_NAME in file_name:
             file_path = path.splitext(path.basename(file_name))[0]
 
-            if file_name.startswith("osd/images/bg/"):
+            if file_name.startswith(OSD_MOD_NAME + "/images/bg/"):
                 renpy.image("bg " + OSD_PREFIX + file_path, file_name)
 
-            elif file_name.startswith("osd/images/sprites/"):
+            elif file_name.startswith(OSD_MOD_NAME + "/images/sprites/"):
                 renpy.image(
-                    OSD_PREFIX + file_path, 
+                    OSD_PREFIX + file_path,
                     ConditionSwitch(
                         "persistent.sprite_time=='sunset'", im.MatrixColor(file_name, im.matrix.tint(0.94, 0.82, 1.0)),
                         "persistent.sprite_time=='night'", im.MatrixColor(file_name, im.matrix.tint(0.63, 0.78, 0.82)),
@@ -19,11 +19,9 @@ init python:
                     )
                 )
 
-            elif file_name.startswith("osd/sounds/"):
+            elif file_name.startswith(OSD_MOD_NAME + "/sounds/"):
                 globals()[OSD_PREFIX + file_path] = file_name
 
-    osd_std_set_for_preview = {}
-    osd_std_set = {}
     store.osd_colors = {}
     store.osd_names = {}
     store.osd_names_list = []
@@ -66,28 +64,56 @@ init python:
         
         if character_name == "osd_narrator":
             if is_nvl:
-                osd_gl["osd_narrator"] = Character(None, kind=nvl, what_style="osd_text_style")
+                osd_gl["osd_narrator"] = Character(
+                    None,
+                    kind=nvl,
+                    what_style="osd_text_style"
+                )
             
             else:
-                osd_gl["osd_narrator"] = Character(None, what_style="osd_text_style")
+                osd_gl["osd_narrator"] = Character(
+                    None,
+                    what_style="osd_text_style"
+                )
             
             return
         
         if character_name == "osd_th":
             if is_nvl:
-                osd_gl["osd_th"] = Character(None, kind=nvl, what_style="osd_text_style", what_prefix="~ ", what_suffix=" ~")
+                osd_gl["osd_th"] = Character(
+                    None,
+                    kind=nvl,
+                    what_style="osd_text_style",
+                    what_prefix="~ ",
+                    what_suffix=" ~"
+                )
             
             else:
-                osd_gl["osd_th"] = Character(None, what_style="osd_text_style", what_prefix="~ ", what_suffix=" ~")
+                osd_gl["osd_th"] = Character(
+                    None,
+                    what_style="osd_text_style",
+                    what_prefix="~ ",
+                    what_suffix=" ~"
+                )
             
             return
         
         if is_nvl:
-            osd_gl[character_name] = DynamicCharacter("%s_name" % character_name, color=store.osd_colors[character_name][osd_speaker_color], kind=nvl, what_style="osd_text_style", who_suffix=":")
+            osd_gl[character_name] = DynamicCharacter(
+                "%s_name" % character_name,
+                color=store.osd_colors[character_name][osd_speaker_color],
+                kind=nvl,
+                what_style="osd_text_style",
+                who_suffix=":"
+            )
             osd_gl["%s_name" % character_name] = store.osd_names[character_name]
         
         else:
-            osd_gl[character_name] = DynamicCharacter("%s_name" % character_name, color=store.osd_colors[character_name][osd_speaker_color], what_style="osd_text_style")
+            osd_gl[character_name] = DynamicCharacter(
+                "%s_name" % character_name,
+                color=store.osd_colors[character_name][osd_speaker_color],
+                what_style="osd_text_style"
+            )
             osd_gl["%s_name" % character_name] = store.osd_names[character_name]
 
     def osd_set_mode_adv():
@@ -122,8 +148,6 @@ init python:
         
         for character_name in store.osd_names_list:
             osd_char_define(character_name)
-
-    osd_reload_names()
 
     if persistent.osd_achievements == None:
         persistent.osd_achievements = {}
@@ -216,23 +240,29 @@ init python:
         renpy.transition(flash)
         renpy.pause(1.3, hard=True)
 
-    def osd_set_main_menu_cursor():
-        config.mouse_displayable = MouseDisplayable(OSD_GUI_PATH + "misc/osd_cursor.png", 0, 0)
-
-    osd_set_main_menu_cursor_curried = renpy.curry(osd_set_main_menu_cursor)
-
     def osd_set_timeofday_cursor():
-        global osd_set_timeofday_cursor_var
+        config.mouse_displayable = MouseDisplayable(OSD_GUI_PATH + "cursors/" + persistent.timeofday + "/cursor.png", 0, 0)
 
-        if osd_set_timeofday_cursor_var:
-            config.mouse_displayable = MouseDisplayable(OSD_GUI_PATH + "dialogue_box/" + persistent.timeofday + "/cursor.png", 0, 0)
+    def osd_set_dynamic_cursor(state):
+        if osd_set_timeofday_cursor in config.overlay_functions:
+            config.overlay_functions.remove(osd_set_timeofday_cursor)
 
-    osd_set_timeofday_cursor_curried = renpy.curry(osd_set_timeofday_cursor)
+        if state == "timeofday":
+            config.overlay_functions.append(osd_set_timeofday_cursor)
 
-    def osd_set_null_cursor():
-        config.mouse_displayable = MouseDisplayable(OSD_GUI_PATH + "misc/osd_none.png", 0, 0)
+        elif state == "main_menu":
+            config.mouse_displayable = MouseDisplayable(OSD_GUI_PATH + "cursors/main_menu/cursor.png", 0, 0)
 
-    osd_set_null_cursor_curried = renpy.curry(osd_set_null_cursor)
+        elif state == "null":
+            config.mouse_displayable = MouseDisplayable(Null(0, 0), 0, 0)
+
+    def osd_set_time(timeofday, sprite_time=None):
+        if sprite_time is None:
+            sprite_time = timeofday
+
+        renpy.block_rollback()
+        persistent.timeofday = timeofday
+        persistent.sprite_time = sprite_time
 
     class OsdDust(renpy.Displayable, NoRollback):   
         def __init__(self, particle):
@@ -343,17 +373,13 @@ init python:
             return renderObj
 
 init:
+    $ osd_reload_names()
+    
     $ osd_titles = '''{b}Большое спасибо за прохождение этого мода!{/b}\n\nВся наша команда провела не один десяток часов в созвонах, рисовании, написании текста и душевном общении, чтобы в конце концов создать нечто особенное.\n\nИ, если история вам понравилась, то своей цели мы достигли. А если нет, то отпишите нам в комментариях, что именно вам не понравилось и как бы ВЫ сделали этот мод лучше.\n\nЗдесь все работают за чашку чая, которую они покупают себе сами, так что ваши комментарии «Хороший мод, жду нового!» - всё, что у нас есть.\n\nНад модом работали:\nSeeker - автор идеи, сценарист, код.\n\nАндрей Катаев - основой код, дизайн интерфейса.\n\nДаниил Бухичевский - помощь с текстом.\n\nЕгорыч - работа над визуальной составляющей.\n\nДарья Исаева - помощь с визуальной составляющей и вычитка текста.\n\nD_SMILE - фон пустого лагеря.\n\nwhale dream - арт боя Третьего и Ниточника.\n\nОтдельная благодарность:\nАлександр Ларин, Никита Стрельцов и Рина Анисимова - за то, что помогли запустить этот мод давным давно, в самый первый раз \n\nТем, кто поддерживал нас финансово\n\nLaimer_\n\nБезумный шаурма\n\nILNikolaevich\n\nZabib\n\nTom Anderson\n\nBy Vensedor\n\nАлександр Милютин\n\nИгорь Шарапов\n\nЮрий Борисов\n\nЕгор Быстров\n\nИван Киселев\n\nGamzaly Yaraliev\n\nВладимир Иванов\n\nДанила Люлин\n\nВалерий Хакимов\n\n Саня Гуляев\n\n Даниил Тихонов \n\n Евгений Портов \n\nТак или иначе, спасибо за уделённое нам время! Этот мод - лишь начало. Мы не собираемся останавливаться. Следите за анонсами. С уважением, Zero Impact.'''
-
-    $ osd_set_timeofday_cursor_var = False
 
     image osd_blank_skip = renpy.display.behavior.ImageButton(Null(1920, 1080), Null(1920, 1080), clicked=[Jump("osd_after_intro")])
 
     image osd_titles_style = ParameterizedText(style="osd_titles_style", size=40, xalign=0.5)
-
-    image osd_loading_text = Text("Загрузка", size=65, font=OSD_GUI_PATH + "fonts/gothic.ttf")
-
-    $ osd_lamp_anim_frequency = renpy.random.randint(1, 5)
 
     $ osd_main_menu_var = True
     $ osd_lock_quit_game_main_menu_var = True
@@ -361,6 +387,11 @@ init:
     $ osd_lock_quick_menu = False
 
     $ osd_portal_use_transition = ImageDissolve(OSD_GUI_PATH + "misc/osd_transition2.png", 0.3, 16)
+
+    image osd_intro_logo = OSD_GUI_PATH + "misc/intro_logo.png"
+    image osd_sky_day = OSD_GUI_PATH + "main_menu/sky_day.png"
+    image osd_sky_sunset = OSD_GUI_PATH + "main_menu/sky_sunset.png"
+    image osd_sky_night = OSD_GUI_PATH + "main_menu/sky_night.png"
 
     image osd_main_menu_atl:
         "osd_sky_day" with Dissolve(4)
@@ -371,40 +402,41 @@ init:
         pause 6.0
         repeat
 
-    image osd_dust = OsdDust(OSD_GUI_PATH + "effects/osd_dust/particle.png")
+    image osd_dust = OsdDust("osd/images/effects/dust_particle.png")
 
-    image bg osd_stars_anim = osd_frame_animation("osd/images/bg/osd_stars_anim/osd_stars", 2, 1.5, True, Dissolve(1.5))
-    image osd_blood_anim = osd_frame_animation(OSD_GUI_PATH + "effects/osd_blood/osd_blood", 4, 0.5, True, dspr)
-    image bg osd_fireplace_anim = osd_frame_animation("osd/images/bg/osd_fireplace_anim/osd_fireplace", 10, 1.8, True, Dissolve(1.2))
-    image bg osd_ext_camp_entrance_anim = osd_frame_animation("osd/images/bg/osd_ext_camp_entrance_anim/osd_ext_camp_entrance", 3, 1.0, True, Dissolve(1.0))
-    image osd_lamp_anim = osd_frame_animation("osd/images/bg/osd_lamp_anim/osd_semen_room_lamp", 2, osd_lamp_anim_frequency, True, dspr)
+    image osd_vingette = "osd/images/effects/vingette.png"
 
-    image osd_lamp_anim_blurred_1 = im.Blur("osd/images/bg/osd_lamp_anim/osd_semen_room_lamp_1.png", 1.5)
-    image osd_lamp_anim_blurred_2 = im.Blur("osd/images/bg/osd_lamp_anim/osd_semen_room_lamp_2.png", 1.5)
+    image bg osd_stars_anim = osd_frame_animation("osd/images/bg/stars_anim/stars", 2, 1.5, True, Dissolve(1.5))
+    image osd_blood_anim = osd_frame_animation("osd/images/effects/blood/blood", 4, 0.5, True, dspr)
+    image bg osd_fireplace_anim = osd_frame_animation("osd/images/bg/fireplace_anim/fireplace", 10, 1.8, True, Dissolve(1.2))
+    image bg osd_ext_camp_entrance_anim = osd_frame_animation("osd/images/bg/ext_camp_entrance_anim/ext_camp_entrance", 3, 1.0, True, Dissolve(1.0))
 
-    image osd_lamp_anim_1 = "osd/images/bg/osd_lamp_anim/osd_semen_room_lamp_1.png"
-    image osd_lamp_anim_2 = "osd/images/bg/osd_lamp_anim/osd_semen_room_lamp_2.png"
+    image osd_lamp_anim_blurred_1 = im.Blur("osd/images/bg/lamp_anim/semen_room_lamp_1.png", 1.5)
+    image osd_lamp_anim_blurred_2 = im.Blur("osd/images/bg/lamp_anim/semen_room_lamp_2.png", 1.5)
+
+    image osd_lamp_anim_1 = "osd/images/bg/lamp_anim/semen_room_lamp_1.png"
+    image osd_lamp_anim_2 = "osd/images/bg/lamp_anim/semen_room_lamp_2.png"
 
     image bg osd_lamp_anim:
         "osd_lamp_anim_1" with dspr
-        pause osd_lamp_anim_frequency
+        pause renpy.random.randint(1, 5)
         "osd_lamp_anim_2" with Dissolve(2)
-        pause osd_lamp_anim_frequency
+        pause renpy.random.randint(1, 5)
         "osd_lamp_anim_1" with dissolve
-        pause osd_lamp_anim_frequency
+        pause renpy.random.randint(1, 5)
         "osd_lamp_anim_2" with dspr
-        pause osd_lamp_anim_frequency
+        pause renpy.random.randint(1, 5)
         repeat
 
     image bg osd_lamp_anim_blurred:
         "osd_lamp_anim_blurred_1" with dspr
-        pause osd_lamp_anim_frequency
+        pause renpy.random.randint(1, 5)
         "osd_lamp_anim_blurred_2" with Dissolve(2)
-        pause osd_lamp_anim_frequency
+        pause renpy.random.randint(1, 5)
         "osd_lamp_anim_blurred_1" with dissolve
-        pause osd_lamp_anim_frequency
+        pause renpy.random.randint(1, 5)
         "osd_lamp_anim_blurred_2" with dspr
-        pause osd_lamp_anim_frequency
+        pause renpy.random.randint(1, 5)
         repeat
 
     image bg osd_ext_road_day_full_nit:
@@ -424,8 +456,8 @@ init:
     $ osd_end_of_secrets = False
     $ osd_expl_death = False
 
-    image silhouette osd_far = im.MatrixColor("osd/images/sprites/pi/far/osd_pi normal far.png", im.matrix.tint(0, 0, 0))
-    image osd_dv silhouette = im.MatrixColor("osd/images/sprites/dv/far/osd_dv normal far.png", im.matrix.tint(0, 0, 0))
+    image osd_pi silhouette far = im.MatrixColor("osd/images/sprites/pi/far/pi normal far.png", im.matrix.tint(0, 0, 0))
+    image osd_dv silhouette = im.MatrixColor("osd/images/sprites/dv/far/dv normal far.png", im.matrix.tint(0, 0, 0))
 
     transform osd_buttons_atl():
         on idle:

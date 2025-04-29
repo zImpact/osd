@@ -40,7 +40,7 @@ screen osd_background_gallery():
     modal True
 
     if not osd_main_menu_var:
-        add "osd_main_menu_frame"
+        add OSD_GUI_PATH + "main_menu/main_menu_frame.png"
 
         $ osd_gallery_table = osd_gallery_bg_list
 
@@ -54,7 +54,7 @@ screen osd_background_gallery():
             antialias True
             kerning 2
 
-        textbutton "[osd_return_text]":
+        textbutton "[OSD_RETURN_TEXT]":
             style "osd_log_button" 
             text_style "osd_settings_link_main_menu_preferences" 
             xalign 0.1
@@ -66,13 +66,13 @@ screen osd_background_gallery():
 
         grid osd_rows osd_cols xpos 0.09 ypos 0.18:
             $ osd_bg_displayed = 0
-            $ osd_next_page = osd_page + 1
+            $ osd_next_page = osd_gallery_page + 1
 
             if osd_next_page > int(osd_len_table / osd_cells):
                 $ osd_next_page = 0
 
             for n in range(osd_len_table):
-                if n < (osd_page + 1) * osd_cells and n >= osd_page * osd_cells:
+                if n < (osd_gallery_page + 1) * osd_cells and n >= osd_gallery_page * osd_cells:
                     $ _osd_t = im.Crop(
                         "osd/images/bg/" + osd_gallery_table[n][len(OSD_PREFIX):] + ".png",
                         (0, 0, 1920, 1080)
@@ -96,7 +96,7 @@ screen osd_background_gallery():
                         im.Image(OSD_GUI_PATH + "save_load/main_menu/thumbnail_hover.png")
                     )
 
-                    add osd_g.make_button(
+                    add osd_gallery.make_button(
                         osd_gallery_table[n],
                         get_image("gui/gallery/blank.png"),
                         None,
@@ -115,22 +115,22 @@ screen osd_background_gallery():
             for j in range(0, osd_cells - osd_bg_displayed):
                 null
 
-        if osd_page != 0:
+        if osd_gallery_page != 0:
             imagebutton:
                 auto "osd_gallery_previous_%s"
                 yalign 0.5 
                 xalign 0.04 
                 action [
-                    SetVariable("osd_page", osd_page - 1),
+                    SetVariable("osd_gallery_page", osd_gallery_page - 1),
                     ShowMenu("osd_background_gallery")
                 ]
 
-        if osd_page != int(osd_page_counter(osd_len_table, osd_cells)) - 1:
+        if osd_gallery_page != int(osd_page_counter(osd_len_table, osd_cells)) - 1:
             imagebutton: 
                 auto "osd_gallery_next_%s"
                 yalign 0.5 
                 xalign 0.96 
                 action [
-                    SetVariable("osd_page", osd_next_page),
+                    SetVariable("osd_gallery_page", osd_next_page),
                     ShowMenu("osd_background_gallery")
                 ]
