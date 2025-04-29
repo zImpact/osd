@@ -1061,7 +1061,9 @@ label osd_fight_projectile_parallax:
     $ renpy.pause(2, hard=True) 
     osd_narrator "Я подождал сорок четыре секунды. Он мог притвориться мертвым, если бы выжил." 
     osd_narrator "Не дышит." 
+    osd_narrator "Тело Ниточника начало становится прозрачным." 
     osd_th "Что же, Ниточник. Даже с таким преимуществом ты проиграл. Смирись. Это полезно."
+    osd_th "То, как его бездыханное тело начинало понемногу исчезать, дарило угрюмое чувство удовольствия."
     $ renpy.block_rollback()
     jump osd_eternity_split_in_two_transit
 
