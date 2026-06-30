@@ -182,7 +182,7 @@ init python:
         renpy.with_statement(dissolve)
         renpy.hide_screen("osd_titles_overlay", layer="overlay")
 
-    def osd_show_centered_text(text, transition = None):
+    def osd_show_centered_text(text, transition=None):
         renpy.show("text", what=Text(text, slow=True, style=style.osd_centered_text_style, xalign=0.5, yalign=0.5))
         renpy.with_statement(transition)
         renpy.pause()

@@ -2,7 +2,7 @@ init python:
     mods["osd_start"] = u"{font=[osd_link_font]}{size=40}Один украденный день{/font}{/size}"
 
     try:
-        modsImages["osd_start"] = (OSD_GUI_PATH + "misc/osd_tabular_list_preview.png", False)
+        modsImages["osd_start"] = (OSD_GUI_PATH + "misc/tabular_list_preview.png", False)
 
     except:
         pass
